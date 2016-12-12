@@ -32,6 +32,7 @@ setup(
     name='pytest-responses',
     version='0.1.0',
     author='David Cramer',
+    author_email='dcramer@gmail.com',
     description=(
         'py.test integration for responses'
     ),
@@ -56,7 +57,7 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
-        'Topic :: Software Development'
+        'Topic :: Software Development',
         'Framework :: Pytest',
     ],
 )
