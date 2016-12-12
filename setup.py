@@ -16,6 +16,7 @@ setup_requires = []
 
 install_requires = [
     'responses',
+    'pytest',
 ]
 
 tests_require = [
