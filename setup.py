@@ -45,7 +45,7 @@ setup(
     tests_require=tests_require,
     setup_requires=setup_requires,
     include_package_data=True,
-    entry_points = {
+    entry_points={
         'pytest11': [
             'pytest-responses = pytest_responses',
         ]
