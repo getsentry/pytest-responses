@@ -19,10 +19,7 @@ install_requires = [
 ]
 
 tests_require = [
-    'pytest',
-    'coverage >= 3.7.1, < 5.0.0',
-    'pytest-cov',
-    'flake8',
+    'responses[test]',
 ]
 
 

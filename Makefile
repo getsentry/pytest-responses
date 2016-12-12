@@ -3,7 +3,7 @@ develop:
 	make install-test-requirements
 
 install-test-requirements:
-	pip install "file://`pwd`#egg=pytest-responses[tests]"
+	pip install "file://`pwd`#egg=pytest-responses[test]"
 
 test: develop lint
 	@echo "Running Python tests"
