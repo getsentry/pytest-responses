@@ -1,0 +1,19 @@
+language: python
+sudo: false
+python:
+  - "2.6"
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+cache:
+  directories:
+    - .pip_download_cache
+env:
+  global:
+    - PIP_DOWNLOAD_CACHE=".pip_download_cache"
+install:
+  - make develop
+script:
+  - if [[ $TRAVIS_PYTHON_VERSION != 2.6 ]]; then make lint; fi
+  - py.test . --cov responses --cov-report term-missing
