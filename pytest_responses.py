@@ -7,8 +7,10 @@ import responses
 
 # pytest plugin support
 def pytest_runtest_setup(item):
-    responses.start()
+    if not item.get_marker('withoutresponses'):
+        responses.start()
 
 
 def pytest_runtest_teardown(item):
-    responses.stop()
+    if not item.get_marker('withoutresponses'):
+        responses.stop()
