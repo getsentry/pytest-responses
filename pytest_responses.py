@@ -13,4 +13,9 @@ def pytest_runtest_setup(item):
 
 def pytest_runtest_teardown(item):
     if not item.get_marker('withoutresponses'):
-        responses.stop()
+        try:
+            responses.stop()
+        except RuntimeError:
+            # patcher was already uninstalled and responses doesnet let us
+            # force maintain it
+            pass
