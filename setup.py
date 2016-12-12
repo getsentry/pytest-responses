@@ -19,8 +19,12 @@ install_requires = [
 ]
 
 tests_require = [
-    'responses[test]',
+    'flake8',
 ]
+
+extras_require = {
+    'tests': tests_require,
+}
 
 
 setup(
@@ -36,6 +40,7 @@ setup(
     py_modules=['pytest_responses'],
     zip_safe=False,
     install_requires=install_requires,
+    extras_require=extras_require,
     tests_require=tests_require,
     setup_requires=setup_requires,
     include_package_data=True,
