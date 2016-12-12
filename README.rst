@@ -3,6 +3,10 @@ pytest-responses
 
 Automatically activate responses across your py.test-powered test suite (thus preventing HTTP requests).
 
+.. sourcecode:: shell
+
+    $ pip install pytest-responses
+
 If particular tests need access to external domains, you can use the ``withoutresponses`` marker:
 
 .. sourcecode:: python
