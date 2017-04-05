@@ -22,3 +22,17 @@ def test_enabled():
         requests.get('http://responses.invalid')
 
     assert len(responses.calls) == 1
+
+
+class TestReset:
+    """
+    Ensure that the callback registered in `test_1` is cleaned up before
+    `test_2`.
+    """
+    def test_1(self):
+        responses.add(responses.GET, 'http://responses.invalid', json=1)
+        assert requests.get('http://responses.invalid').json() == 1
+
+    def test_2(self):
+        responses.add(responses.GET, 'http://responses.invalid', json=2)
+        assert requests.get('http://responses.invalid').json() == 2
