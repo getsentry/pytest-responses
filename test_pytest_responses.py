@@ -24,6 +24,7 @@ def test_enabled():
     assert len(responses.calls) == 1
 
 
+@pytest.mark.withoutresponses
 def test_fixture(responses):
     with pytest.raises(ConnectionError):
         requests.get('http://responses.invalid')
