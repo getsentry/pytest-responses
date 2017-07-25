@@ -1,21 +1,25 @@
-from __future__ import (
-    absolute_import, print_function, division, unicode_literals
-)
+import pytest
 
-import responses
+import responses as responses_
 
 
 # pytest plugin support
 def pytest_runtest_setup(item):
     if not item.get_marker('withoutresponses'):
-        responses.start()
+        responses_.start()
 
 
 def pytest_runtest_teardown(item):
     if not item.get_marker('withoutresponses'):
         try:
-            responses.stop()
+            responses_.stop()
         except RuntimeError:
-            # patcher was already uninstalled and responses doesnet let us
+            # patcher was already uninstalled and responses doesnt let us
             # force maintain it
             pass
+
+
+@pytest.fixture
+def responses():
+    with responses_.RequestsMock() as rsps:
+        yield rsps

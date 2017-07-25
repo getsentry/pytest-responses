@@ -22,3 +22,10 @@ def test_enabled():
         requests.get('http://responses.invalid')
 
     assert len(responses.calls) == 1
+
+
+def test_fixture(responses):
+    with pytest.raises(ConnectionError):
+        requests.get('http://responses.invalid')
+
+    assert len(responses.calls) == 1
