@@ -24,9 +24,15 @@ def test_enabled():
     assert len(responses.calls) == 1
 
 
-@pytest.mark.withoutresponses
-def test_fixture(responses):
-    with pytest.raises(ConnectionError):
-        requests.get('http://responses.invalid')
+class TestReset:
+    """
+    Ensure that the callback registered in `test_1` is cleaned up before
+    `test_2`.
+    """
+    def test_1(self):
+        responses.add(responses.GET, 'http://responses.invalid', json=1)
+        assert requests.get('http://responses.invalid').json() == 1
 
-    assert len(responses.calls) == 1
+    def test_2(self):
+        responses.add(responses.GET, 'http://responses.invalid', json=2)
+        assert requests.get('http://responses.invalid').json() == 2
