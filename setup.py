@@ -16,7 +16,7 @@ setup_requires = []
 
 install_requires = [
     'responses',
-    'pytest',
+    'pytest>=2.5',
 ]
 
 tests_require = [
@@ -30,7 +30,7 @@ extras_require = {
 
 setup(
     name='pytest-responses',
-    version='0.1.0',
+    version='0.4.0.dev0',
     author='David Cramer',
     author_email='dcramer@gmail.com',
     description=(

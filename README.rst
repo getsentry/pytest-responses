@@ -17,3 +17,14 @@ If particular tests need access to external domains, you can use the ``withoutre
             requests.get('http://responses.invalid')
 
         assert len(responses.calls) == 0
+
+
+Additionally, you can use the responses fixture:
+
+.. sourcecode:: python
+
+    def test_enabled(responses):
+        with pytest.raises(ConnectionError):
+            requests.get('http://responses.invalid')
+
+        assert len(responses.calls) == 1
