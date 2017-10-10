@@ -4,6 +4,13 @@ import responses as responses_
 
 
 # pytest plugin support
+def pytest_configure(config):
+    config.addinivalue_line(
+        'markers',
+        'withoutresponses: Tests which need access to external domains.'
+    )
+
+
 def pytest_runtest_setup(item):
     if not item.get_marker('withoutresponses'):
         responses_.start()

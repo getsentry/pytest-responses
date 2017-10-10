@@ -8,6 +8,8 @@ import pytest
 
 from requests.exceptions import ConnectionError
 
+pytest_plugins = str('pytester')
+
 
 @pytest.mark.withoutresponses
 def test_disabled():
@@ -22,6 +24,11 @@ def test_enabled():
         requests.get('http://responses.invalid')
 
     assert len(responses.calls) == 1
+
+
+def test_marker(testdir):
+    result = testdir.runpytest('--markers')
+    assert '@pytest.mark.withoutresponses' in result.stdout.str()
 
 
 class TestReset:
