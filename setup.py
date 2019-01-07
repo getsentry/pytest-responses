@@ -16,7 +16,7 @@ setup_requires = []
 
 install_requires = [
     'responses',
-    'pytest>=2.5',
+    'pytest>=3.6',
 ]
 
 tests_require = [
