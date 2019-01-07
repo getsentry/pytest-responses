@@ -12,12 +12,12 @@ def pytest_configure(config):
 
 
 def pytest_runtest_setup(item):
-    if not item.get_marker('withoutresponses'):
+    if not item.get_closest_marker('withoutresponses'):
         responses_.start()
 
 
 def pytest_runtest_teardown(item):
-    if not item.get_marker('withoutresponses'):
+    if not item.get_closest_marker('withoutresponses'):
         try:
             responses_.stop()
             responses_.reset()
