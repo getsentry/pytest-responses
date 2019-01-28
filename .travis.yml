@@ -18,4 +18,8 @@ matrix:
         - make
     - python: 3.6
       install:
+        - pip install pytest==3.5
+        - make
+    - python: 3.6
+      install:
         - make

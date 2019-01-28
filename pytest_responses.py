@@ -1,6 +1,15 @@
+from distutils.version import LooseVersion
+
 import pytest
 
 import responses as responses_
+
+
+def get_withoutresponses_marker(item):
+    if LooseVersion(pytest.__version__) >= LooseVersion('4.0.0'):
+        return item.get_closest_marker('withoutresponses')
+    else:
+        return item.get_marker('withoutresponses')
 
 
 # pytest plugin support
@@ -12,12 +21,12 @@ def pytest_configure(config):
 
 
 def pytest_runtest_setup(item):
-    if not item.get_marker('withoutresponses'):
+    if not get_withoutresponses_marker(item):
         responses_.start()
 
 
 def pytest_runtest_teardown(item):
-    if not item.get_marker('withoutresponses'):
+    if not get_withoutresponses_marker(item):
         try:
             responses_.stop()
             responses_.reset()
