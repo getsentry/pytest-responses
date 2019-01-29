@@ -5,7 +5,14 @@ install:
 script:
   - make lint
   - py.test .
-
+deploy:
+  provider: pypi
+  user: getsentry
+  password:
+    secure: qM4tDnTcoCUrHKgPPTBwDJsqTv7kwDb7QnD1z9yx/+kAJhhZ5zG3a4lnVXelqezP8M6AWiUK+lmvPP8y3X7J0OqnGYgSiXhOkV5WBpKN54sJmdf7BastTSTGzdwZwodDb0m4e21590NfQIOW40jchprRPW6FX1rlR0BHt3raj75JSmaYIPiGx6pSXW8xUBQK18Ujcj4eSfoA3vQEMAJSiHfI1b5Qw+qKuLcL5WCO6OCn/jgsVWD/nG0lbuol8cX2YQgNDWcd+CJ9Q8EWddUcGdOa+e8uqgbYK6W3aoggSiyDuSnMfg3EmgJD1llCyg//RVOOH+fr2ed0gbISyHILLM32e/jl/w40A8VPFbd0tkzIDfpBm2F3oaDNJcMoxTQkGOA2Nhv/Lo1DyCHyypCekPIli9d/O1XWxs5NXH1K49+v7zRrdoDN+u5aVVcWi8u55YUiwiD2EKPK2u2Qo+pDZINohY60CmoS2fRsGjpiXz+eMMWSX37fjFw3M9LNQIyxFxz6X7Z9fbRK8La74/8Eeq0fg3uUrY2yMtl0YlNXNI/cpvO2jtoqE4HZ/XHlLdCcxo0DjuST1BG3Kw8XrE2+Ix3tG9BDw2zHL++Pr8lLJ3lArPg4NjzEy5SwlF/AGB+5SXlRMwHksyf2U8RcAC7QtPQWD4BC926Wbo4oPeq0ebE=
+  on:
+    tags: true
+  distributions: sdist bdist_wheel
 matrix:
   fast_finish: true
   include:
