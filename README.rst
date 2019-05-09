@@ -1,6 +1,12 @@
 pytest-responses
 ================
 
+.. image:: https://img.shields.io/pypi/v/pytest-responses.svg
+    :target: https://pypi.python.org/pypi/pytest-responses/
+    
+.. image:: https://travis-ci.org/getsentry/pytest-responses.svg?branch=master
+    :target: https://travis-ci.org/getsentry/pytest-responses
+
 Automatically activate responses across your py.test-powered test suite (thus preventing HTTP requests).
 
 .. sourcecode:: shell
