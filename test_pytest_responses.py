@@ -43,3 +43,16 @@ class TestReset:
     def test_2(self):
         responses.add(responses.GET, 'http://responses.invalid', json=2)
         assert requests.get('http://responses.invalid').json() == 2
+
+
+class TestSkip:
+    """
+    Ensure that we don't choke on skipped tests.
+    """
+    @pytest.mark.skip
+    def test_1(self):
+        assert 2 + 2 == 5
+
+    def test_2(self):
+        responses.add(responses.GET, 'http://responses.invalid', json='foo')
+        assert requests.get('http://responses.invalid').json() == 'foo'
