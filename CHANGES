@@ -1,4 +1,10 @@
+0.5.0
+-----
+
+- Fix bug with skipping tests (#10; thanks @f213)
+
 0.4.0
+-----
 
 - Support pytest 4.x
 
