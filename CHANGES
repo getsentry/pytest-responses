@@ -1,3 +1,8 @@
+0.5.1
+-----
+
+- Fix usage of deprecated LooseVersion (#23 thanks @danielsamuels)
+
 0.5.0
 -----
 
