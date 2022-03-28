@@ -1,4 +1,4 @@
-from distutils.version import LooseVersion
+from packaging.version import Version
 
 import pytest
 
@@ -6,7 +6,7 @@ import responses as responses_
 
 
 def get_withoutresponses_marker(item):
-    if LooseVersion(pytest.__version__) >= LooseVersion('4.0.0'):
+    if Version(pytest.__version__) >= Version('4.0.0'):
         return item.get_closest_marker('withoutresponses')
     else:
         return item.get_marker('withoutresponses')
