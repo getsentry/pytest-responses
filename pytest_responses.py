@@ -1,4 +1,4 @@
-from packaging.version import Version
+from packaging import version
 
 import pytest
 
@@ -6,7 +6,7 @@ import responses as responses_
 
 
 def get_withoutresponses_marker(item):
-    if Version(pytest.__version__) >= Version('4.0.0'):
+    if version.parse(pytest.__version__) >= version.parse('4.0.0'):
         return item.get_closest_marker('withoutresponses')
     else:
         return item.get_marker('withoutresponses')
