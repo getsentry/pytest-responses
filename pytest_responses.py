@@ -36,7 +36,7 @@ def pytest_runtest_teardown(item):
             pass
 
 
-@pytest.yield_fixture
+@pytest.fixture
 def responses():
     with responses_.RequestsMock() as rsps:
         yield rsps
