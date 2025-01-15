@@ -2,7 +2,17 @@ from packaging import version
 
 import pytest
 
-import responses as responses_
+from responses import (
+    Call,
+    CallbackResponse,
+    CallList,
+    PassthroughResponse,
+    RequestsMock,
+    Response,
+    matchers,
+    registries,
+)
+from responses import mock as _mock
 
 
 def get_withoutresponses_marker(item):
@@ -22,21 +32,38 @@ def pytest_configure(config):
 
 def pytest_runtest_setup(item):
     if not get_withoutresponses_marker(item):
-        responses_.start()
+        _mock.start()
 
 
 def pytest_runtest_teardown(item):
     if not get_withoutresponses_marker(item):
         try:
-            responses_.stop()
-            responses_.reset()
+            _mock.stop()
+            _mock.reset()
         except (AttributeError, RuntimeError):
             # patcher was already uninstalled (or not installed at all) and
             # responses doesnt let us force maintain it
             pass
 
 
-@pytest.yield_fixture
+@pytest.fixture
 def responses():
-    with responses_.RequestsMock() as rsps:
+    with RequestsMock() as rsps:
         yield rsps
+
+
+__all__ = [
+    'responses',
+    'Call',
+    'CallbackResponse',
+    'CallList',
+    'PassthroughResponse',
+    'RequestsMock',
+    'Response',
+    'matchers',
+    'registries',
+    # pytest plug-in setup
+    'pytest_configure',
+    'pytest_runtest_setup',
+    'pytest_runtest_teardown',
+]
