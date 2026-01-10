@@ -17,7 +17,7 @@ jobs:
     name: "test"
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v2
       - name: Install Tox
         run:  sudo apt-get install tox
       - name: Run Tests
