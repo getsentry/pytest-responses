@@ -1,11 +1,8 @@
 name: Test
 on:
-  # Run CI on all pushes to the master and release/** branches, and on all new
-  # pull requests, and on all pushes to pull requests (even if a pull request
-  # is not against master).
   push:
     branches:
-      - "master"
+      - "main"
       - "releases/**"
   pull_request:
 defaults:
@@ -13,12 +10,32 @@ defaults:
     shell: bash
 jobs:
   test:
-    runs-on: ubuntu-18.04
-    name: "test"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.11", "3.12"]
+    name: "test (Python ${{ matrix.python-version }})"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Install Tox
-        run:  sudo apt-get install tox
+        run: pip install tox
       - name: Run Tests
-        run:  tox
+        run: tox -e py
+
+  # Single stable check name for branch protection rules — require 'test-results'
+  # instead of individual matrix jobs so adding/removing Python versions doesn't
+  # require updating branch protection settings.
+  test-results:
+    if: always()
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check matrix results
+        run: |
+          if [[ "${{ needs.test.result }}" != "success" ]]; then
+            echo "Tests failed"
+            exit 1
+          fi
