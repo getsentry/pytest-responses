@@ -30,7 +30,7 @@ extras_require = {
 
 setup(
     name='pytest-responses',
-    version='0.5.1',
+    version='0.6.0',
     python_requires='>=3.9',
     author='David Cramer',
     author_email='dcramer@gmail.com',
