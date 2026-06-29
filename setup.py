@@ -31,6 +31,7 @@ extras_require = {
 setup(
     name='pytest-responses',
     version='0.5.1',
+    python_requires='>=3.9',
     author='David Cramer',
     author_email='dcramer@gmail.com',
     description=(
@@ -55,8 +56,11 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Topic :: Software Development',
         'Framework :: Pytest',
     ],
